@@ -1,0 +1,6 @@
+{
+  "name": "TypeScript practice",
+  "dockerComposeFile": "../compose.yml",
+  "service": "web",
+  "workspaceFolder": "/workspace"
+}
