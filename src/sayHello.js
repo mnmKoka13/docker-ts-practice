@@ -73,4 +73,24 @@ function sayHello3(name, greeting) {
 }
 console.log(sayHello3('Makoto'));
 console.log(sayHello3('Makoto', 'Hi'));
+// 関数を引数に取る関数
+function printName2(firstName, formatter) {
+    console.log(formatter(firstName));
+}
+function formatName(name) {
+    return "".concat(name, " san");
+}
+printName2('Nagisa', formatName);
+// arrow function
+// ( 引数名: 引数の型 ): 戻り値の型 => JavaScriptの式
+// eg. let sayHello = (name: string): string => `Hello ${name}`;
+function genBirdsInfo(name) {
+    return name.split(',');
+}
+// 関数の型を利用
+function singBirds(birdInfo) {
+    return birdInfo('hato, kiji')[0] + ' piyo piyo';
+}
+console.log(singBirds(genBirdsInfo));
+// console.log(singBirds('dobato')); // 型が合わないためエラー
 // tsc --strictNullChecks sayHello.ts
