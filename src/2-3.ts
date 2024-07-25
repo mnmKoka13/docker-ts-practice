@@ -56,7 +56,29 @@ function kataAssertion() {
   // error TS18047: 'myCanvas' is possibly 'null'.
   // error TS2339: Property 'width' does not exist on type 'HTMLElement'.
 
+  const hoge: any = 'test';
+  const fuga: number = hoge as number;
+  // コンパイル時にはエラーにならないが、実行時にエラーになる
+  // console.log(fuga.toFixed(2));
 }
 
 kataAssertion();
-  
+
+// 型エイリアス
+// type 型名 = 型
+type Name = string;
+
+// xとyの座標プロパティを持つPointという型エイリアスを定義する例
+type Point = {
+  x: number;
+  y: number;
+}
+
+function printPoint(point: Point) {
+  console.log(`x座標は ${point.x} です`);
+  console.log(`y座標は ${point.y} です`);
+}
+
+printPoint({ x: 100, y: 200 });
+// 型が合っていてもプロパティ名が異なるとエラーになる
+// printPoint({ z: 100, t: 200});

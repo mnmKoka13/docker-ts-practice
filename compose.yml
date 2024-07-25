@@ -7,5 +7,6 @@ services:
       - "3000:3000"
     volumes:
       - .:/workspace
+    command: npm install -g typescript
     entrypoint: >
       /bin/sh -c "sleep 86400"

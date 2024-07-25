@@ -39,7 +39,20 @@ katasuiron();
 // 型アサーション
 function kataAssertion() {
     // 次のコードはJSではエラーにならないが、TSではエラーになる
-    var myCanvas = document.getElementById('main_canvas');
-    console.log(myCanvas.width);
+    // const myCanvas = document.getElementById('main_canvas');
+    // console.log(myCanvas.width);
+    // error TS18047: 'myCanvas' is possibly 'null'.
+    // error TS2339: Property 'width' does not exist on type 'HTMLElement'.
+    var hoge = 'test';
+    var fuga = hoge;
+    // コンパイル時にはエラーにならないが、実行時にエラーになる
+    // console.log(fuga.toFixed(2));
 }
 kataAssertion();
+function printPoint(point) {
+    console.log("x\u5EA7\u6A19\u306F ".concat(point.x, " \u3067\u3059"));
+    console.log("y\u5EA7\u6A19\u306F ".concat(point.y, " \u3067\u3059"));
+}
+printPoint({ x: 100, y: 200 });
+// 型が合っていてもプロパティ名が異なるとエラーになる
+// printPoint({ z: 100, t: 200});
