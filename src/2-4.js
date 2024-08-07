@@ -100,3 +100,59 @@ function unionAndIntersction() {
     // }
 }
 unionAndIntersction();
+function literal() {
+    // リテラル型
+    // 決まった文字列や数値しか入らない方という制御が可能
+    // 変数:許可するデータ1 | 許可するデータ2 | ...
+    var postStatus;
+    postStatus = 'draft'; // OK
+    // postStatus = 'drafts'; // 型宣言にない文字列が割り当てられているためコンパイルエラー
+    function compare(a, b) {
+        return a === b ? 0 : a > b ? 1 : -1;
+    }
+    console.log(compare('a', 'b'));
+}
+literal();
+function typeNever() {
+    // never型
+    // 決して発生しない値の種類を表す
+    // 戻り値の型をnever型にすることで、関数が例外をスローすることを表現できる
+    function error(message) {
+        throw new Error(message);
+    }
+    function foo(x) {
+        if (typeof x === 'string') {
+            return true;
+        }
+        else if (typeof x === 'number') {
+            return false;
+        }
+        // never を利用することで明示的に値が返らないことを示す
+        // never を使用しないとTypeScriptはエラーを出す
+        return error('Never happens');
+    }
+    console.log(foo('a'));
+    var PageType;
+    (function (PageType) {
+        PageType[PageType["ViewProfile"] = 0] = "ViewProfile";
+        PageType[PageType["EditProfile"] = 1] = "EditProfile";
+        PageType[PageType["ChangePassword"] = 2] = "ChangePassword";
+    })(PageType || (PageType = {}));
+    var getTitleText = function (type) {
+        switch (type) {
+            case PageType.ViewProfile:
+                return 'Setting';
+            case PageType.EditProfile:
+                return 'Edit Profile';
+            case PageType.ChangePassword:
+                return 'Change Password';
+            default:
+                // never型を返すことで、全てのケースを網羅していることを示す
+                var wrongType = type;
+                throw new Error("".concat(wrongType, " is not in PageType."));
+        }
+    };
+    var type = PageType.ViewProfile;
+    console.log(getTitleText(type));
+}
+typeNever();
