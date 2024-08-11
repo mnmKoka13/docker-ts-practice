@@ -176,29 +176,30 @@ function unknownType() {
 unknownType();
 
 // どうやらTSのバージョンが古いため、以下のコードはエラーになる
-// 解消方法は調査中
+// 解消方法は調査中 -> 判明
+// es2016以降のバージョンが必要
 
-// async function asyncAwait() {
-//   function fetchFromServer(id: string): Promise<{success: boolean}> {
-//     return new Promise(resolve => {
-//       setTimeout(() => {
-//         resolve({success: true});
-//       }, 1000);
-//     })
-//   }
+async function asyncAwait() {
+  function fetchFromServer(id: string): Promise<{success: boolean}> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve({success: true});
+      }, 1000);
+    })
+  }
 
-//   async function asyncFunc(): Promise<string> {
-//     const result = await fetchFromServer('111');
-//     return `The result: ${result.success}`;
-//   }
+  async function asyncFunc(): Promise<string> {
+    const result = await fetchFromServer('111');
+    return `The result: ${result.success}`;
+  }
 
-//   (async () => {
-//     const result = await asyncFunc();
-//     console.log(result);
-//   })();
+  (async () => {
+    const result = await asyncFunc();
+    console.log(result);
+  })();
 
-//   // Promise として扱う場合
-//   asyncFunc().then(result => console.log(result));
-// }
+  // Promise として扱う場合
+  asyncFunc().then(result => console.log(result));
+}
 
-// asyncAwait();
+asyncAwait();
